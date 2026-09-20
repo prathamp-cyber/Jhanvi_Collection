@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom'
+import axios from 'axios'
+import { toast } from 'react-toastify'
 import AdminLogin from './AdminLogin'
 import AdminNavbar from './AdminNavbar'
 import AdminSidebar from './AdminSidebar'
@@ -15,15 +17,57 @@ const AdminPanel = () => {
   const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:4000';
   const currency = '$';
 
+  // Handle robots meta tag while AdminPanel is mounted
+  useEffect(() => {
+    let meta = document.querySelector("meta[name='robots']");
+    let created = false;
+    if (!meta) {
+      meta = document.createElement('meta');
+      meta.name = 'robots';
+      created = true;
+      document.head.appendChild(meta);
+    }
+    const prevContent = meta.getAttribute('content');
+    meta.setAttribute('content', 'noindex, nofollow');
+
+    return () => {
+      if (created) {
+        meta.remove();
+      } else if (prevContent !== null) {
+        meta.setAttribute('content', prevContent);
+      } else {
+        meta.removeAttribute('content');
+      }
+    };
+  }, []);
+
+  // Axios interceptor for handling 401 responses
+  useEffect(() => {
+    const interceptor = axios.interceptors.response.use(
+      (response) => response,
+      (error) => {
+        if (error.response && error.response.status === 401) {
+          localStorage.removeItem('adminToken');
+          setToken('');
+          toast.error(error.response.data?.message || 'Session expired. Please login again.');
+        }
+        return Promise.reject(error);
+      }
+    );
+    return () => {
+      axios.interceptors.response.eject(interceptor);
+    };
+  }, []);
+
   useEffect(() => {
     localStorage.setItem('adminToken', token);
   }, [token]);
 
   useEffect(() => {
-    if (token && (location.pathname === '/samay' || location.pathname === '/samay/' || location.pathname === '/admin' || location.pathname === '/admin/')) {
+    if (token && (location.pathname === '/samay' || location.pathname === '/samay/')) {
       navigate('/samay/add');
     }
-  }, [location.pathname, token]);
+  }, [location.pathname, token, navigate]);
 
   if (!token) {
     return <AdminLogin setToken={setToken} backendUrl={backendUrl} />;

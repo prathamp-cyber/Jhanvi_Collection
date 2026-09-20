@@ -1,14 +1,24 @@
 import mongoose from 'mongoose'
 
-const connectDB = async()=>{
-    mongoose.connection.on('connected',()=>{
-        console.log("DB connected");
+const connectDB = async () => {
+    mongoose.connection.on('connected', () => {
+        console.log("DB connected")
     })
-    try {
-        await mongoose.connect(`${process.env.MONGODB_URI}/e-commerce`);
-    } catch(error) {
-        console.error("MongoDB Connection Error:", error.message);
-        console.error("👉 Please update MONGODB_URI in backend/.env with your MongoDB Atlas connection string or start local MongoDB server.");
+
+    if (!process.env.MONGODB_URI) {
+        console.error("MONGODB_URI is missing. Add it in backend/.env")
+        process.exit(1)
     }
-} 
-export default connectDB;
+
+    try {
+        await mongoose.connect(process.env.MONGODB_URI, {
+            dbName: 'jhanvi_collection',
+        })
+    } catch (error) {
+        console.error("MongoDB Connection Error:", error.message)
+        console.error("👉 Check: 1) password in MONGODB_URI, 2) Atlas Network Access IP whitelist (allow 0.0.0.0/0), 3) database user credentials.")
+        process.exit(1)
+    }
+}
+
+export default connectDB

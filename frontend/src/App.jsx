@@ -19,7 +19,7 @@ import AdminPanel from './admin/AdminPanel'
 
 const App = () => {
   const location = useLocation();
-  const isAdminRoute = location.pathname.startsWith('/samay') || location.pathname.startsWith('/admin');
+  const isAdminRoute = location.pathname.startsWith('/samay');
 
   return (
     <div className='px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]'>
@@ -38,8 +38,6 @@ const App = () => {
         <Route path='/orders' element={<Orders/>} />
         <Route path='/verify' element={<Verify/>} />
         <Route path='/samay/*' element={<AdminPanel />} />
-        <Route path='/admin/*' element={<AdminPanel />} />
-
       </Routes>
       {!isAdminRoute && <Footer />}
     </div>

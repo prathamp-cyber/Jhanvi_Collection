@@ -2,6 +2,18 @@ import validator from 'validator'
 import userModel from '../models/userModel.js'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
+import crypto from 'crypto'
+
+const safeCompare = (a, b) => {
+    if (typeof a !== 'string' || typeof b !== 'string') return false;
+    const bufA = Buffer.from(a);
+    const bufB = Buffer.from(b);
+    if (bufA.length !== bufB.length) {
+        crypto.timingSafeEqual(bufA, bufA);
+        return false;
+    }
+    return crypto.timingSafeEqual(bufA, bufB);
+}
 
 const createToken = (id) =>{
     return jwt.sign({id}, process.env.JWT_SECRET);
@@ -71,18 +83,24 @@ const registerUser = async (req,res)=>{
 // Route for admin login
 const adminLogin = async (req,res)=>{
     try{
-        const {email,password} =req.body;
-        if(email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD){
-            const token = jwt.sign(email+password, process.env.JWT_SECRET);
-            res.json({success: true, token})
+        const {email,password} = req.body;
+        const adminEmail = (process.env.ADMIN_EMAIL || '').trim();
+        const adminPass = (process.env.ADMIN_PASSWORD || '').trim();
+
+        const isEmailMatch = safeCompare(email, adminEmail);
+        const isPassMatch = safeCompare(password, adminPass);
+
+        if(isEmailMatch && isPassMatch){
+            const token = jwt.sign({ role: 'admin' }, process.env.JWT_SECRET, { expiresIn: '12h' });
+            return res.json({success: true, token})
         }
         else{
-            res.json({success:false, message:"Invalid credentials"})
+            return res.json({success:false, message:"Invalid credentials"})
         }
     }
     catch(error){
         console.log(error)
-        res.json({success: false, message: error.message})
+        res.json({success: false, message: "Invalid credentials"})
     }
 }
 
