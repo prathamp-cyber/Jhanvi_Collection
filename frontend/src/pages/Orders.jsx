@@ -2,10 +2,11 @@ import React, { useContext, useEffect, useState } from 'react'
 import { ShopContext } from '../context/ShopContext'
 import Title from '../components/Title';
 import axios from 'axios'
+import { formatPrice } from '../utils/formatPrice';
 
 
 const Orders = () => {
-  const {backendUrl, token, currency} = useContext(ShopContext);
+  const {backendUrl, token} = useContext(ShopContext);
   const [orderData, setOrderData] = useState([])
 
   const loadOrderData = async ()=>{
@@ -52,7 +53,7 @@ const Orders = () => {
                   <div>
                     <p className='sm:text-base font-medium'>{item.name}</p>  
                     <div className='flex items-center gap-3 mt-1 text-base text-gray-700'>
-                        <p className='text-lg'>{currency} {item.price}</p>
+                        <p className='text-lg'>{formatPrice(item.price)}</p>
                         <p>Quantity: {item.quantity}</p>
                         <p>Size: {item.size}</p>
                     </div>

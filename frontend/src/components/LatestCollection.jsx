@@ -14,7 +14,7 @@ const LatestCollection = () => {
             <div className="text-center py-8 text-3xl">
                 <Title text1={"LATEST"} text2={"COLLECTION"} />
                 <p className='w-3/4 m-auto text-xs sm:text-sm md:text-base text-gray-600'>
-                    Discover the latest trends and styles in our new collection. From chic apparel to must-have accessories, find everything you need to refresh your wardrobe this season.
+                    Discover the latest designs and exquisite craftsmanship in our new imitation jewellery collection. Explore elegant necklaces, earrings, bangles, and sets.
                 </p>
             </div>
             {/* Rendering Products */}

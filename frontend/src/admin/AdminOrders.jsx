@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 import { assets } from '../assets/admin/assets.js'
+import { formatPrice } from '../utils/formatPrice'
 
 const AdminOrders = ({ token, backendUrl, currency }) => {
   const [orders, setOrders] = useState([]);
@@ -73,7 +74,7 @@ const AdminOrders = ({ token, backendUrl, currency }) => {
                 <p>Payment: <span className={order.payment ? "text-green-600 font-semibold" : "text-amber-600"}>{order.payment ? "Done" : "Pending"}</span></p>
                 <p>Date: {new Date(order.date).toLocaleDateString()}</p>
               </div>
-              <p className='text-sm sm:text-[15px] font-bold text-black'>{currency || '$'}{order.amount}</p>
+              <p className='text-sm sm:text-[15px] font-bold text-black'>{formatPrice(order.amount)}</p>
               <select onChange={(event)=>statusHandler(event, order._id)} value={order.status} className='p-2 font-semibold border border-gray-300 rounded bg-gray-50 outline-none'>
                 <option value="Order Placed">Order Placed</option>
                 <option value="Packing">Packing</option>

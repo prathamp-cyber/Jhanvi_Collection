@@ -15,7 +15,7 @@ const AdminPanel = () => {
   const location = useLocation();
 
   const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:4000';
-  const currency = '$';
+  const currency = '₹';
 
   // Handle robots meta tag while AdminPanel is mounted
   useEffect(() => {

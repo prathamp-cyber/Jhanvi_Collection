@@ -1,13 +1,15 @@
 import { createContext, useDebugValue, useEffect, useState } from "react";
-import {products} from "../assets/assets";
 import { toast } from 'react-toastify';
 export const ShopContext = createContext();
 import {useNavigate} from 'react-router-dom'
 import axios from 'axios'
 
+// TODO: Update delivery fee once confirmed (must match backend orderController.js until backend price calculation is implemented)
+export const DELIVERY_FEE = 10;
+
 const ShopContextProvider = (props)=>{
-    const currency = "$";
-    const delivery_fee = 10;
+    const currency = "₹";
+    const delivery_fee = DELIVERY_FEE;
     const backendUrl = import.meta.env.VITE_BACKEND_URL
     const [search, setSearch] = useState("");
     const [showSearch, setShowSearch] = useState(false);

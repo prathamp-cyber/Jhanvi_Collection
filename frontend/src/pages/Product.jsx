@@ -3,10 +3,11 @@ import { useParams } from 'react-router-dom'
 import { ShopContext } from '../context/ShopContext';
 import { assets } from '../assets/assets';
 import RelatedProducts from '../components/RelatedProducts';
+import { formatPrice } from '../utils/formatPrice';
 
 const Product = () => {
   const { productId } = useParams();
-  const { products, currency, addToCart } = useContext(ShopContext);
+  const { products, addToCart } = useContext(ShopContext);
   const [productData, setProductData] = useState(null);
   const [image, setImage] = useState("");
   const [size, setSize] = useState('');
@@ -53,7 +54,7 @@ const Product = () => {
             <img className='w-3.5' src={assets.star_dull_icon} alt="" />
             <p className='pl-2'>(112)</p>
           </div>
-          <p className='font-medium text-3xl mt-5'>{currency}{productData.price}</p>
+          <p className='font-medium text-3xl mt-5'>{formatPrice(productData.price)}</p>
           <p className='mt-5 text-gray-500 md:w-4/5'>{productData.description}</p>
           <div className='flex flex-col gap-4 my-8'>
             <p>Select Size</p>
@@ -68,7 +69,7 @@ const Product = () => {
           <div className='text-sm text-gray-500 mt-5 flex flex-col gap-1' >
             <p>Original product.</p>
             <p>Cash on delivery is available on this product.</p>
-            <p>Easy return and exchange policy within 7 days.</p>
+            <p>TODO: Update return and exchange policy details.</p>
           </div>
         </div>
       </div>

@@ -7,6 +7,7 @@ import razorpay from 'razorpay'
 
 // global variables
 const currency = 'inr'
+// TODO: Update delivery fee once confirmed (must match frontend ShopContext.jsx until backend price calculation is implemented)
 const deliveryCharges = 10
 
 // gateway initialize

@@ -17,7 +17,7 @@ const BestSeller = () => {
             <div className='text-center text-3xl py-8'>
                 <Title text1={"BEST"} text2={"SELLERS"} />
                 <p className='w-3/4 m-auto text-xs sm:text-sm md:text-base text-gray-600'>
-                    Discover our best-selling products that our customers love!
+                    Explore our most popular imitation jewellery pieces loved by our customers!
                 </p>
             </div>
             {/* Rendering Products */}

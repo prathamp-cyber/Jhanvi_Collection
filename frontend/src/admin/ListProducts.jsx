@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { toast } from 'react-toastify'
+import { formatPrice } from '../utils/formatPrice'
 
 const ListProducts = ({ token, backendUrl, currency }) => {
   const [list, setList] = useState([])
@@ -58,7 +59,7 @@ const ListProducts = ({ token, backendUrl, currency }) => {
               <img className='w-12 h-12 object-cover rounded' src={item.image[0]} alt={item.name} />
               <p className='font-medium'>{item.name}</p>
               <p>{item.category}</p>
-              <p>{currency || '$'}{item.price}</p>  
+              <p>{formatPrice(item.price)}</p>  
               <p onClick={()=>removeProduct(item._id)} className='text-right md:text-center cursor-pointer text-red-500 font-bold hover:text-red-700'>X</p>
             </div>
           ))

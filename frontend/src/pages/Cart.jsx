@@ -4,8 +4,10 @@ import { ShopContext } from '../context/ShopContext';
 import Title from '../components/Title';
 import { assets } from '../assets/assets';
 import CartTotal from '../components/CartTotal';
+import { formatPrice } from '../utils/formatPrice';
+
 const Cart = () => {
-  const { products, currency, cartItems, updateQuantity, navigate } = useContext(ShopContext);
+  const { products, cartItems, updateQuantity, navigate } = useContext(ShopContext);
   const [cartData, setCartData] = useState([]);
 
   useEffect(() => {
@@ -45,7 +47,7 @@ const Cart = () => {
                   <div>
                     <p className='text-sm sm:text-lg font-medium'>{productData.name}</p>
                     <div className='flex items-center gap-5 mt-2'>
-                      <p>{currency}{productData.price}</p>
+                      <p>{formatPrice(productData.price)}</p>
                       <p className='px-2 sm:px-3 sm:py-1 border bg-slate-50'>{item.size}</p>
                     </div>
                   </div>
