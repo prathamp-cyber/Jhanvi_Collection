@@ -1,6 +1,6 @@
-# 🛍️ Jhanvi Collection - E-Commerce Platform
+# 🛍️ Janvi Collection - E-Commerce Platform
 
-**Jhanvi Collection** is a full-stack MERN (MongoDB, Express, React, Node.js) e-commerce application. It includes a customer-facing storefront, an integrated admin dashboard accessible directly via the `/samay` route, a secure REST backend API, and a standalone admin dashboard.
+**Janvi Collection** is a full-stack MERN (MongoDB, Express, React, Node.js) e-commerce application. It includes a customer-facing storefront, an integrated admin dashboard accessible directly via the `/samay` route, a secure REST backend API, and a standalone admin dashboard.
 
 ---
 

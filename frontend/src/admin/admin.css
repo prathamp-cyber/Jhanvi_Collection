@@ -1,0 +1,69 @@
+/* Scoped Admin Styles - prevents leaking into storefront */
+.admin-root {
+  --admin-bg: #f6f3ec;
+  --admin-card-bg: #ffffff;
+  --admin-card-border: #e6e1d6;
+  --admin-navy: #0a1f44;
+  --admin-navy-hover: #12305f;
+  --admin-navy-light: #e6ecf5;
+  --admin-gold: #b8934a;
+  --admin-text-main: #1b2437;
+  --admin-text-muted: #6b7280;
+  
+  --admin-status-success: #15803d;
+  --admin-status-success-bg: #dcfce7;
+  --admin-status-warning: #b45309;
+  --admin-status-warning-bg: #fef3c7;
+  --admin-status-danger: #b91c1c;
+  --admin-status-danger-bg: #fee2e2;
+  --admin-status-info: #1d4ed8;
+  --admin-status-info-bg: #dbeafe;
+  
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  color: var(--admin-text-main);
+  background-color: var(--admin-bg);
+  min-height: 100vh;
+  width: 100%;
+}
+
+.admin-root * {
+  box-sizing: border-box;
+}
+
+/* Custom scrollbar for admin area */
+.admin-root ::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.admin-root ::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.admin-root ::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 9999px;
+}
+
+.admin-root ::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+
+/* Animations */
+@keyframes adminFadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes adminSlideInLeft {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+
+.admin-animate-fade-in {
+  animation: adminFadeIn 0.2s ease-out forwards;
+}
+
+.admin-animate-slide-in {
+  animation: adminSlideInLeft 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}

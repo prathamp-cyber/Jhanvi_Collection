@@ -16,7 +16,7 @@ const Contact = () => {
           <p className='font-semibold text-xl text-gray-600'>Our Store</p>
           <p className='text-gray-500'>TODO: Add store address and city</p>
           <p className='text-gray-500'>Phone/WhatsApp: TODO: Add phone number <br/> Email: TODO: Add store email address</p>
-          <p className='font-semibold text-xl text-gray-600'>Careers at Jhanvi Collection</p>
+          <p className='font-semibold text-xl text-gray-600'>Careers at Janvi Collection</p>
           <p className='text-gray-500'>Learn more about our teams and job openings.</p>
           <button className='border border-black px-8 py-4 text-sm hover:bg-black hover:text-white transition-all duration-300'>Explore Jobs </button>
         </div>
