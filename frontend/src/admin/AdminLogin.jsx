@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import { toast } from 'react-toastify'
+import { assets } from '../assets/admin/assets.js'
+import { BRAND_NAME } from '../config/brand.js'
 
 const AdminLogin = ({ setToken, backendUrl }) => {
     const [email, setEmail] = useState('')
@@ -31,7 +33,10 @@ const AdminLogin = ({ setToken, backendUrl }) => {
     return (
         <div className='min-h-[70vh] flex items-center justify-center w-full py-10'>
             <div className='bg-white shadow-lg border border-gray-200 rounded-xl px-8 py-8 max-w-md w-full'>
-                <h1 className='text-2xl font-bold mb-2 text-center text-gray-800'>Samay Admin Panel</h1>
+                <div className='flex flex-col items-center mb-4'>
+                    <img src={assets.jhanvi_mark} className='h-12 w-auto object-contain mb-2' alt={BRAND_NAME} />
+                    <h1 className='text-2xl font-bold text-center text-[#0a1f44] prata-regular'>{BRAND_NAME} Admin Panel</h1>
+                </div>
                 <p className='text-sm text-gray-500 text-center mb-6'>Enter admin credentials to log in</p>
                 <form onSubmit={onSubmitHandler}>
                     <div className='mb-4 min-w-72'>

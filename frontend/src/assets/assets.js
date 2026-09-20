@@ -1,4 +1,5 @@
-import logo from './logo.png'
+import jhanvi_mark from './jhanvi-mark.png'
+import jhanvi_mark_light from './jhanvi-mark-light.png'
 import hero_img from './hero_img.png'
 import cart_icon from './cart_icon.png'
 import bin_icon from './bin_icon.png'
@@ -18,7 +19,8 @@ import stripe_logo from './stripe_logo.png'
 import cross_icon from './cross_icon.png'
 
 export const assets = {
-    logo,
+    jhanvi_mark,
+    jhanvi_mark_light,
     hero_img,
     cart_icon,
     dropdown_icon,

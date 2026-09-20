@@ -1,12 +1,16 @@
 import React from 'react'
 import { assets } from '../assets/assets'
+import { BRAND_NAME } from '../config/brand'
 
 const Footer = () => {
   return (
     <div>
       <div className='flex flex-col sm:grid grid-cols-[3fr_1fr_1fr] gap-14 my-10 mt-40 text-sm '>
         <div>
-          <img src={assets.logo} alt='Logo' className='mb-5 w-32' />
+          <div className='flex items-center gap-3 mb-5'>
+            <img src={assets.jhanvi_mark} alt={BRAND_NAME} className='h-10 sm:h-12 w-auto object-contain' />
+            <span className='prata-regular text-xl sm:text-2xl text-[#0a1f44] tracking-wide'>{BRAND_NAME}</span>
+          </div>
           <p className='w-full md-2/3 text-gray-600'>Discover exquisite imitation jewellery crafted with elegance for every occasion.</p>
         </div>
 

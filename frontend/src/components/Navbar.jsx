@@ -1,9 +1,9 @@
-import React from 'react'
-import { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { assets } from '../assets/assets'
 import { NavLink, Link } from 'react-router-dom'
 import { ShopContext } from '../context/ShopContext';
-import { useContext } from 'react';
+import { BRAND_NAME } from '../config/brand';
+
 const Navbar = () => {
 
     const [visible, setVisible] = useState(false);
@@ -16,8 +16,9 @@ const Navbar = () => {
     }
     return (
         <div className='flex items-center justify-between py-5 font-medium' >
-            <Link to='/'>
-                <img src={assets.logo} className='w-36' alt='Logo' />
+            <Link to='/' className='flex items-center gap-3'>
+                <img src={assets.jhanvi_mark} className='h-10 sm:h-12 w-auto object-contain' alt={BRAND_NAME} />
+                <span className='prata-regular text-xl sm:text-2xl text-[#0a1f44] tracking-wide'>{BRAND_NAME}</span>
             </Link>
 
             <ul className=' hidden sm:flex gap-5 text-sm text-gray-700'>
